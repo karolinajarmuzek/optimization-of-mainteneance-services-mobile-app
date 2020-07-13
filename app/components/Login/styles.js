@@ -4,19 +4,19 @@ import { black } from "ansi-colors";
 const styles = EStyleSheet.create({
   loginBackground: {
     height: "100%",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   loginContainer: {
     backgroundColor: "black",
     width: "100%",
     height: "100%",
     opacity: 0.6,
-    position: "absolute"
+    position: "absolute",
   },
   container: {
     alignItems: "center",
     marginVertical: 10,
-    paddingHorizontal: 30
+    paddingHorizontal: 30,
   },
   loginHeader: {
     color: "#B63181",
@@ -25,7 +25,7 @@ const styles = EStyleSheet.create({
     marginBottom: 20,
     textShadowColor: "black",
     textShadowOffset: { width: -1, height: -1 },
-    textShadowRadius: 5
+    textShadowRadius: 5,
   },
   inputContainer: {
     height: 60,
@@ -36,16 +36,16 @@ const styles = EStyleSheet.create({
     paddingLeft: 20,
     alignItems: "center",
     flexDirection: "row",
-    opacity: 0.7
+    opacity: 0.7,
   },
   icon: {
-    marginRight: 15
+    marginRight: 15,
   },
   input: {
-    color: "#4AB7F6",
+    color: "white",
     fontSize: 18,
     height: 60,
-    width: "90%"
+    width: "90%",
   },
   button: {
     marginTop: 20,
@@ -56,12 +56,12 @@ const styles = EStyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     color: "#fff",
-    opacity: 0.9
+    opacity: 0.9,
   },
   buttonText: {
     fontSize: 20,
-    color: "#fff"
-  }
+    color: "#fff",
+  },
 });
 
 export default styles;

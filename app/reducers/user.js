@@ -1,15 +1,15 @@
-import { SET_USER } from "../actions/user";
+import { SET_TOKEN } from "../actions/user";
 
 const initilState = {
-  username: ""
+  token: "",
 };
 
 const reducer = (state = initilState, action) => {
   switch (action.type) {
-    case SET_USER:
+    case SET_TOKEN:
       return {
         ...state,
-        username: action.username
+        token: action.token,
       };
     default:
       return state;

@@ -3,13 +3,13 @@ import { View, Text } from "react-native";
 import {
   FontAwesome,
   Entypo,
-  MaterialCommunityIcons
+  MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 import styles from "./styles";
 
-function Profile() {
+function Profile(props) {
   const navigation = useNavigation();
 
   const logOut = () => {
@@ -19,7 +19,7 @@ function Profile() {
   return (
     <View>
       <MaterialCommunityIcons
-        name="logout"
+        name='logout'
         size={30}
         color={"#fff"}
         style={styles.logoutIcon}
@@ -28,12 +28,15 @@ function Profile() {
       <View style={styles.container}>
         <View style={styles.personalDetials}>
           <View style={styles.photo}>
-            <FontAwesome name="user-circle-o" size={220} />
+            <FontAwesome name='user-circle-o' size={220} />
           </View>
-          <Text style={styles.nameText}> Marek Nowak</Text>
+          <Text style={styles.nameText}>
+            {" "}
+            {props.firstName} {props.lastName}
+          </Text>
           <View style={styles.location}>
-            <Entypo name="location-pin" size={25} color={"#fff"} />
-            <Text style={styles.locationText}> localization </Text>
+            <Entypo name='location-pin' size={25} color={"#fff"} />
+            <Text style={styles.locationText}> {props.localization} </Text>
           </View>
         </View>
         <View style={styles.fixDetails}>
