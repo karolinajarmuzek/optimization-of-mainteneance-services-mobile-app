@@ -6,8 +6,11 @@ import { useNavigation } from "@react-navigation/native";
 
 import styles from "./styles";
 
+import { URL_REPAIR } from "../../urls";
+
 function DetailsTab() {
   const task = useSelector((state) => state.tasks.task);
+  const token = useSelector((state) => state.user.token);
   const navigation = useNavigation();
 
   const elements = [
@@ -24,8 +27,29 @@ function DetailsTab() {
   ];
 
   const closeTask = () => {
-    console.log("close");
-    navigation.navigate("Home");
+    console.debug("Closing task process started");
+    fetch(URL_REPAIR + task.id, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        status: "FINISHED",
+      }),
+    })
+      .then((response) => {
+        if (response.status === 204) {
+          console.debug("Closing task process completed successfully");
+          navigation.navigate("Home");
+        } else {
+          throw new Error("Network response was not ok!");
+        }
+      })
+      .catch((error) => {
+        console.debug("Error during closing task " + error);
+      });
   };
 
   return (
