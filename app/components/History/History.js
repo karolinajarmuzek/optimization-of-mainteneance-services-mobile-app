@@ -12,7 +12,7 @@ import styles from "./styles";
 
 import { ProfileIcon } from "../ProfileIcon";
 
-import { URL_REPAIR_HISTORY_BYTOKEN } from "../../urls";
+import { URL_REPAIR_BYTOKEN } from "../../urls";
 
 function History({}) {
   const [data, setData] = useState([]);
@@ -22,16 +22,16 @@ function History({}) {
   tempDate.setDate(tempDate.getDate() - 1);
   const [date, setDate] = useState(
     String(tempDate.getDate()) +
-      "-" +
-      String(tempDate.getMonth() + 1) +
-      "-" +
+      "." +
+      String(("0" + (tempDate.getMonth() + 1)).slice(-2)) +
+      "." +
       tempDate.getFullYear()
   );
   const dispatch = useDispatch();
 
   function fetchData() {
     console.debug("Data fetch started");
-    fetch(URL_REPAIR_HISTORY_BYTOKEN, {
+    fetch(URL_REPAIR_BYTOKEN + "/status=FINISHED/date=" + date, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -63,7 +63,7 @@ function History({}) {
             date={date}
             mode='date'
             placeholder='select date'
-            format='DD-MM-YYYY'
+            format='DD.MM.YYYY'
             minDate='2019-01-01'
             maxDate={tempDate}
             confirmBtnText='Confirm'

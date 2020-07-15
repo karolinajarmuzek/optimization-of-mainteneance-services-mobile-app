@@ -3,7 +3,4 @@ export const URL_DEVICE = "http://192.168.1.105:8080/api/device";
 export const URL_SERVICEMAN_BYTOKEN =
   "http://192.168.1.105:8080/api/serviceman/byToken";
 export const URL_REPAIR_BYTOKEN =
-  "http://192.168.1.105:8080/api/repair/byToken";
-export const URL_REPAIR_HISTORY_BYTOKEN =
-  "http://192.168.1.105:8080/api/repair/byToken";
-export const URL_REPAIR = "http://192.168.1.105:8080/api/repair/";
+  "http://192.168.1.105:8080/api/serviceman/byToken/repair";

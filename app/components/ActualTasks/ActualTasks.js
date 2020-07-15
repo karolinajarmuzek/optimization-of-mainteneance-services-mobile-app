@@ -28,7 +28,7 @@ function ActualTasks() {
 
   function fetchData() {
     console.debug("Data fetch started");
-    fetch(URL_REPAIR_BYTOKEN, {
+    fetch(URL_REPAIR_BYTOKEN + "/status=PENDING", {
       method: "GET",
       headers: {
         Accept: "application/json",
