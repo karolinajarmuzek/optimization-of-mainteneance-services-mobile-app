@@ -7,18 +7,20 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 
 function DetailsTab() {
-  const task = useSelector(state => state.tasks.task);
+  const task = useSelector((state) => state.tasks.task);
   const navigation = useNavigation();
 
   const elements = [
-    [task.service.address, "location-arrow"],
-    [task.date.date + " " + task.date.time, "calendar"],
-    [task.service.estimatedTime + " min", "hourglass-1"],
+    [task.reportResponse.location, "location-arrow"],
+    [task.date + " " + task.time, "calendar"],
+    [task.time + " min", "hourglass-1"],
     [
-      task.customer.customerFirstName + " " + task.customer.customerLastName,
-      "user"
+      task.reportResponse.customerPayload.firstName +
+        " " +
+        task.reportResponse.customerPayload.lastName,
+      "user",
     ],
-    [task.customer.customerPhoneNumber, "phone"]
+    [task.reportResponse.customerPayload.phoneNumber, "phone"],
   ];
 
   const closeTask = () => {
@@ -36,7 +38,7 @@ function DetailsTab() {
                 <FontAwesome
                   name={element[1]}
                   size={25}
-                  color="#023A5A"
+                  color='#023A5A'
                   style={styles.icon}
                 />
                 <Text style={styles.text}> {element[0]} </Text>
@@ -48,11 +50,13 @@ function DetailsTab() {
           );
         })}
       </View>
-      <TouchableOpacity activeOpacity={0.5} style={styles.button}>
-        <Text style={styles.buttonText} onPress={closeTask}>
-          Close report
-        </Text>
-      </TouchableOpacity>
+      {task.status === "REPAIRING" ? (
+        <TouchableOpacity activeOpacity={0.5} style={styles.button}>
+          <Text style={styles.buttonText} onPress={closeTask}>
+            Close report
+          </Text>
+        </TouchableOpacity>
+      ) : null}
     </View>
   );
 }

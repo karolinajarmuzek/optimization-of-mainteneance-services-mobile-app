@@ -9,25 +9,21 @@ function TimeLine({ data }) {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const handleDetails = data => {
-    console.log("handle", data["element"]);
+  const handleDetails = (data) => {
     dispatch(selectTask(data["element"]));
     navigation.navigate("Details");
   };
 
-  const converData = data => {
+  const converData = (data) => {
     let newData = [];
-    data.forEach(element => {
+    data.forEach((element) => {
       var task = {};
-      console.log("task", task);
-      task["time"] = element["date"]["time"];
-      task["title"] = element["service"]["title"];
-      task["description"] = element["service"]["description"];
+      task["time"] = element["time"];
+      task["title"] = element["reportResponse"]["devicePayload"]["name"];
+      task["description"] = element["reportResponse"]["description"];
       task["element"] = element;
-      console.log("task", task);
       newData.push(task);
     });
-    console.log("newdata " + newData);
     return newData;
   };
 
@@ -37,9 +33,9 @@ function TimeLine({ data }) {
       data={converData(data)}
       circleSize={20}
       innerCircle={"dot"}
-      circleColor="#023A5A"
-      lineColor="#023A5A"
-      columnFormat="two-column"
+      circleColor='#023A5A'
+      lineColor='#023A5A'
+      columnFormat='two-column'
       timeContainerStyle={{ minWidth: 65 }}
       timeStyle={{
         textAlign: "center",
@@ -47,7 +43,7 @@ function TimeLine({ data }) {
         color: "white",
         paddingVertical: 7,
         borderRadius: 13,
-        fontSize: 16
+        fontSize: 16,
       }}
       separator={false}
       detailContainerStyle={{
@@ -55,11 +51,11 @@ function TimeLine({ data }) {
         paddingHorizontal: 5,
         paddingBottom: 5,
         backgroundColor: "#4AB7F6",
-        borderRadius: 15
+        borderRadius: 15,
       }}
       descriptionStyle={{ color: "#fff", fontSize: 15 }}
       options={{
-        style: { paddingTop: 5 }
+        style: { paddingTop: 5 },
       }}
       titleStyle={{ fontWeight: "bold", fontSize: 18, color: "#023A5A" }}
       onEventPress={handleDetails}

@@ -9,7 +9,6 @@ import { History } from "../components/History";
 import { Header } from "../components/Header";
 
 import { selectTask } from "../actions/tasks";
-
 const ActualTab = () => <ActualTasks />;
 
 const HistoryTab = () => <History />;
@@ -19,7 +18,7 @@ const initialLayout = { width: Dimensions.get("window").width };
 function Home({ navigation }) {
   const dispatch = useDispatch();
 
-  const handleDetails = data => {
+  const handleDetails = (data) => {
     dispatch(selectTask(data));
     navigation.navigate("Details");
   };
@@ -27,15 +26,15 @@ function Home({ navigation }) {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: "actual", title: "Your tasks" },
-    { key: "history", title: "History" }
+    { key: "history", title: "History" },
   ]);
 
   const renderScene = SceneMap({
     actual: ActualTab,
-    history: HistoryTab
+    history: HistoryTab,
   });
 
-  const renderTabBar = props => (
+  const renderTabBar = (props) => (
     <TabBar
       {...props}
       indicatorStyle={{ backgroundColor: "#B63181" }}
@@ -51,7 +50,7 @@ function Home({ navigation }) {
         renderScene={renderScene}
         onIndexChange={setIndex}
         initialLayout={initialLayout}
-        tabBarPosition="bottom"
+        tabBarPosition='bottom'
         renderTabBar={renderTabBar}
       />
     </Container>

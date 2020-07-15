@@ -6,13 +6,13 @@ import { FontAwesome } from "@expo/vector-icons";
 import styles from "./styles";
 
 function DeviceTab() {
-  const task = useSelector(state => state.tasks.task);
+  const task = useSelector((state) => state.tasks.task);
   const elements = [
-    [task.service.device.name, "bookmark"],
-    [task.service.device.type, "list-alt"],
-    [task.service.device.producer, "tags"],
-    [task.service.serviceType, "briefcase"],
-    [task.service.description, "comment"]
+    [task.reportResponse.devicePayload.name, "bookmark"],
+    [task.reportResponse.devicePayload.type, "list-alt"],
+    [task.reportResponse.date, "tags"],
+    [task.reportResponse.failurePayload.type, "briefcase"],
+    [task.reportResponse.description, "comment"],
   ];
   return (
     <View style={styles.detailContainer}>
@@ -24,7 +24,7 @@ function DeviceTab() {
                 <FontAwesome
                   name={element[1]}
                   size={25}
-                  color="#023A5A"
+                  color='#023A5A'
                   style={styles.icon}
                 />
                 <Text style={styles.text}> {element[0]} </Text>

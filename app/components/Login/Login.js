@@ -26,6 +26,7 @@ function Login() {
   const setUserToken = (token) => dispatch(setToken(token));
 
   const handleLoginButtonPress = () => {
+    console.debug("Login process started");
     fetch(URL_LOGIN, {
       method: "POST",
       headers: {
@@ -46,6 +47,7 @@ function Login() {
       })
       .then((json) => {
         setUserToken(json["accessToken"]);
+        console.debug("Login process completed successfully");
         navigation.navigate("Home");
       })
       .catch((error) => {
