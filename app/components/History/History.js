@@ -1,9 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import React, { useState, useEffect, useCallback } from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  RefreshControl,
+  SafeAreaView,
+} from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { Icon } from "react-native-elements";
 import DatePicker from "react-native-datepicker";
 import { LinearGradient } from "expo-linear-gradient";
+import { UIActivityIndicator } from "react-native-indicators";
 
 import { Container } from "../Container";
 import { selectTask } from "../../actions/tasks";
@@ -16,6 +23,8 @@ import { URL_REPAIR_BYTOKEN } from "../../urls";
 
 function History({}) {
   const [data, setData] = useState([]);
+  const [dataFetched, setDataFetched] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const token = useSelector((state) => state.user.token);
 
   var tempDate = new Date();
@@ -43,10 +52,18 @@ function History({}) {
       .then((json) => {
         console.debug("Data fetch completed successfully");
         setData(json);
+        setDataFetched(true);
+        setRefreshing(false);
       });
   }
 
   useEffect(() => {
+    fetchData();
+  }, []);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setDataFetched(false);
     fetchData();
   }, []);
 
@@ -92,11 +109,21 @@ function History({}) {
             }
           />
         </View>
-        {data.length >= 1 ? (
-          <TimeLine data={data} />
-        ) : (
-          <Text> "Data loading" </Text>
-        )}
+        <SafeAreaView>
+          <ScrollView
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          >
+            {!dataFetched ? (
+              <UIActivityIndicator color='#023A5A' />
+            ) : data.length == 0 && dataFetched ? (
+              <Text> No tasks available </Text>
+            ) : (
+              <TimeLine data={data} />
+            )}
+          </ScrollView>
+        </SafeAreaView>
       </View>
     </Container>
   );

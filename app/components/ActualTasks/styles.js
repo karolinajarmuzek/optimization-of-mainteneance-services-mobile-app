@@ -5,23 +5,28 @@ const styles = EStyleSheet.create({
     height: "100%",
     padding: 30,
     paddingHorizontal: 30,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   gradientStyle: {
     width: "100%",
     height: "100%",
-    position: "absolute"
+    position: "absolute",
   },
   textContainer: {
     width: "100%",
     alignItems: "center",
-    marginBottom: 30
+    marginBottom: 30,
   },
   text: {
     fontSize: 25,
     color: "#023A5A",
-    fontWeight: "bold"
-  }
+    fontWeight: "bold",
+  },
+  scrollView: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
 
 export default styles;

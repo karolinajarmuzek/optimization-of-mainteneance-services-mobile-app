@@ -1,5 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import React, { useState, useEffect, useCallback } from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  RefreshControl,
+  SafeAreaView,
+} from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { LinearGradient } from "expo-linear-gradient";
 import { useIsFocused } from "@react-navigation/native";
@@ -11,6 +17,7 @@ import styles from "./styles";
 
 //import { data } from "../../data";
 import { ProfileIcon } from "../ProfileIcon";
+import { UIActivityIndicator } from "react-native-indicators";
 
 import { setActualTasks } from "../../actions/tasks";
 
@@ -18,6 +25,8 @@ import { URL_REPAIR_BYTOKEN } from "../../urls";
 
 function ActualTasks() {
   const [data, setData] = useState([]);
+  const [dataFetched, setDataFetched] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const token = useSelector((state) => state.user.token);
   const isFocused = useIsFocused();
 
@@ -40,12 +49,20 @@ function ActualTasks() {
       .then((json) => {
         console.debug("Data fetch completed successfully");
         setData(json);
+        setDataFetched(true);
+        setRefreshing(false);
       });
   }
 
   useEffect(() => {
     fetchData();
   }, [isFocused]);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setDataFetched(false);
+    fetchData();
+  }, []);
 
   return (
     <Container>
@@ -54,11 +71,22 @@ function ActualTasks() {
         <View style={styles.textContainer}>
           <Text style={styles.text}> Check your today's tasks </Text>
         </View>
-        {data.length >= 1 ? (
-          <TimeLine data={data} />
-        ) : (
-          <Text> "Data loading" </Text>
-        )}
+        <SafeAreaView>
+          <ScrollView
+            contentContainerStyle={styles.scrollView}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          >
+            {!dataFetched ? (
+              <UIActivityIndicator color='#023A5A' />
+            ) : data.length == 0 && dataFetched ? (
+              <Text> No tasks available </Text>
+            ) : (
+              <TimeLine data={data} />
+            )}
+          </ScrollView>
+        </SafeAreaView>
       </View>
     </Container>
   );

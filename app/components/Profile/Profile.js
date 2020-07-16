@@ -7,8 +7,11 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { UIActivityIndicator } from "react-native-indicators";
 
 import styles from "./styles";
+
+import { setToken } from "../../actions/user";
 
 import { URL_REPAIR_BYTOKEN } from "../../urls";
 
@@ -43,6 +46,7 @@ function Profile(props) {
   }, []);
 
   const logOut = () => {
+    setToken("");
     navigation.navigate("Login");
   };
 
@@ -82,7 +86,9 @@ function Profile(props) {
               <Text style={styles.fixesText}>repairs</Text>
             </View>
           </View>
-        ) : null}
+        ) : (
+          <UIActivityIndicator color='#023A5A' />
+        )}
       </View>
     </View>
   );

@@ -48,6 +48,8 @@ function Login() {
       .then((json) => {
         setUserToken(json["accessToken"]);
         console.debug("Login process completed successfully");
+        setUsername("");
+        setPassword("");
         navigation.navigate("Home");
       })
       .catch((error) => {
