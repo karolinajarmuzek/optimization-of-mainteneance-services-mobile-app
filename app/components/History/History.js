@@ -92,7 +92,7 @@ function History({}) {
             }
           />
         </View>
-        {data.length > 1 ? (
+        {data.length >= 1 ? (
           <TimeLine data={data} />
         ) : (
           <Text> "Data loading" </Text>

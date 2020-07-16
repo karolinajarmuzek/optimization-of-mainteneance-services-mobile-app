@@ -8,15 +8,18 @@ import styles from "./styles";
 function DeviceTab() {
   const task = useSelector((state) => state.tasks.task);
   const elements = [
-    [task.reportResponse.devicePayload.name, "bookmark"],
-    [task.reportResponse.devicePayload.type, "list-alt"],
-    [task.reportResponse.date, "tags"],
+    [
+      task.reportResponse.devicePayload.name +
+        "\n " +
+        task.reportResponse.devicePayload.type,
+      "bookmark",
+    ],
     [task.reportResponse.failurePayload.type, "briefcase"],
     [task.reportResponse.description, "comment"],
   ];
   return (
     <View style={styles.detailContainer}>
-      <View style={[styles.textPanel, { height: "90%" }]}>
+      <View style={styles.textPanel}>
         {elements.map((element, index) => {
           return (
             <View key={index}>
@@ -27,9 +30,12 @@ function DeviceTab() {
                   color='#023A5A'
                   style={styles.icon}
                 />
-                <Text style={styles.text}> {element[0]} </Text>
+                <View style={styles.textContainer}>
+                  <Text style={styles.text}> {element[0]} </Text>
+                </View>
               </View>
-              {elements.length !== index + 1 ? (
+              {elements.length !== index + 1 &&
+              elements[index + 1][1] != null ? (
                 <View style={styles.separator} />
               ) : null}
             </View>

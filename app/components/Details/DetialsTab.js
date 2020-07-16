@@ -54,7 +54,7 @@ function DetailsTab() {
 
   return (
     <View style={styles.detailContainer}>
-      <View style={styles.textPanel}>
+      <View style={[styles.textPanel, { paddingHorizontal: 50 }]}>
         {elements.map((element, index) => {
           return (
             <View key={index}>
@@ -73,14 +73,14 @@ function DetailsTab() {
             </View>
           );
         })}
+        {task.status === "REPAIRING" ? (
+          <TouchableOpacity activeOpacity={0.5} style={styles.button}>
+            <Text style={styles.buttonText} onPress={closeTask}>
+              Close report
+            </Text>
+          </TouchableOpacity>
+        ) : null}
       </View>
-      {task.status === "REPAIRING" ? (
-        <TouchableOpacity activeOpacity={0.5} style={styles.button}>
-          <Text style={styles.buttonText} onPress={closeTask}>
-            Close report
-          </Text>
-        </TouchableOpacity>
-      ) : null}
     </View>
   );
 }

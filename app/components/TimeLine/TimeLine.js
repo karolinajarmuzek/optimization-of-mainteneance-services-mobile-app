@@ -35,7 +35,7 @@ function TimeLine({ data }) {
       innerCircle={"dot"}
       circleColor='#023A5A'
       lineColor='#023A5A'
-      columnFormat='two-column'
+      columnFormat='single-column-left'
       timeContainerStyle={{ minWidth: 65 }}
       timeStyle={{
         textAlign: "center",

@@ -28,7 +28,7 @@ function ActualTasks() {
 
   function fetchData() {
     console.debug("Data fetch started");
-    fetch(URL_REPAIR_BYTOKEN + "/status=PENDING", {
+    fetch(URL_REPAIR_BYTOKEN + "/actual", {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -54,7 +54,7 @@ function ActualTasks() {
         <View style={styles.textContainer}>
           <Text style={styles.text}> Check your today's tasks </Text>
         </View>
-        {data.length > 1 ? (
+        {data.length >= 1 ? (
           <TimeLine data={data} />
         ) : (
           <Text> "Data loading" </Text>
