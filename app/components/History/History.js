@@ -1,19 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  RefreshControl,
-  SafeAreaView,
-} from "react-native";
+import { View, Text } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { Icon } from "react-native-elements";
 import DatePicker from "react-native-datepicker";
-import { LinearGradient } from "expo-linear-gradient";
 import { UIActivityIndicator } from "react-native-indicators";
 
 import { Container } from "../Container";
-import { selectTask } from "../../actions/tasks";
 import { TimeLine } from "../TimeLine";
 import styles from "./styles";
 
@@ -39,12 +31,6 @@ function History({}) {
 
   function fetchData() {
     console.debug("Data fetch started");
-    console.log(
-      "AAA " +
-        URL_REPAIR_BYTOKEN +
-        "/status=FINISHED/date=" +
-        date.replace(/-/g, ".")
-    );
     fetch(
       URL_REPAIR_BYTOKEN + "/status=FINISHED/date=" + date.replace(/-/g, "."),
       {
@@ -72,7 +58,6 @@ function History({}) {
     fetchData();
   }, [date]);
 
-  console.log("dat ", date);
   return (
     <Container>
       <ProfileIcon />

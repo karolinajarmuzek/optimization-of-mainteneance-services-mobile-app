@@ -7,12 +7,10 @@ import {
   SafeAreaView,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { LinearGradient } from "expo-linear-gradient";
 import { useIsFocused } from "@react-navigation/native";
 
 import { Container } from "../Container";
 import { TimeLine } from "../TimeLine";
-import { Header } from "../Header";
 import styles from "./styles";
 
 //import { data } from "../../data";
