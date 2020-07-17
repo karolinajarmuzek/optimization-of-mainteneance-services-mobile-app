@@ -24,36 +24,43 @@ import { URL_REPAIR_BYTOKEN } from "../../urls";
 function History({}) {
   const [data, setData] = useState([]);
   const [dataFetched, setDataFetched] = useState(false);
-  const [refreshing, setRefreshing] = useState(false);
   const token = useSelector((state) => state.user.token);
 
   var tempDate = new Date();
   tempDate.setDate(tempDate.getDate() - 1);
   const [date, setDate] = useState(
     String(tempDate.getDate()) +
-      "." +
+      "-" +
       String(("0" + (tempDate.getMonth() + 1)).slice(-2)) +
-      "." +
+      "-" +
       tempDate.getFullYear()
   );
   const dispatch = useDispatch();
 
   function fetchData() {
     console.debug("Data fetch started");
-    fetch(URL_REPAIR_BYTOKEN + "/status=FINISHED/date=" + date, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-    })
+    console.log(
+      "AAA " +
+        URL_REPAIR_BYTOKEN +
+        "/status=FINISHED/date=" +
+        date.replace(/-/g, ".")
+    );
+    fetch(
+      URL_REPAIR_BYTOKEN + "/status=FINISHED/date=" + date.replace(/-/g, "."),
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      }
+    )
       .then((response) => response.json())
       .then((json) => {
         console.debug("Data fetch completed successfully");
         setData(json);
         setDataFetched(true);
-        setRefreshing(false);
       });
   }
 
@@ -61,12 +68,11 @@ function History({}) {
     fetchData();
   }, []);
 
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    setDataFetched(false);
+  useEffect(() => {
     fetchData();
-  }, []);
+  }, [date]);
 
+  console.log("dat ", date);
   return (
     <Container>
       <ProfileIcon />
@@ -80,7 +86,7 @@ function History({}) {
             date={date}
             mode='date'
             placeholder='select date'
-            format='DD.MM.YYYY'
+            format='DD-MM-YYYY'
             minDate='2019-01-01'
             maxDate={tempDate}
             confirmBtnText='Confirm'
@@ -98,6 +104,7 @@ function History({}) {
             }}
             onDateChange={(date) => {
               setDate(date);
+              dataFetched(false);
             }}
             iconComponent={
               <Icon
@@ -109,21 +116,17 @@ function History({}) {
             }
           />
         </View>
-        <SafeAreaView>
-          <ScrollView
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-            }
-          >
-            {!dataFetched ? (
-              <UIActivityIndicator color='#023A5A' />
-            ) : data.length == 0 && dataFetched ? (
-              <Text> No tasks available </Text>
-            ) : (
-              <TimeLine data={data} />
-            )}
-          </ScrollView>
-        </SafeAreaView>
+        {!dataFetched ? (
+          <View style={styles.centerContent}>
+            <UIActivityIndicator color='#023A5A' />
+          </View>
+        ) : data.length == 0 && dataFetched ? (
+          <View style={styles.centerContent}>
+            <Text> No tasks available </Text>
+          </View>
+        ) : (
+          <TimeLine data={data} />
+        )}
       </View>
     </Container>
   );

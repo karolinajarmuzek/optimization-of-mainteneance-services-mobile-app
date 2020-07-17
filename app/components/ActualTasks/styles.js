@@ -7,11 +7,6 @@ const styles = EStyleSheet.create({
     paddingHorizontal: 30,
     backgroundColor: "#fff",
   },
-  gradientStyle: {
-    width: "100%",
-    height: "100%",
-    position: "absolute",
-  },
   textContainer: {
     width: "100%",
     alignItems: "center",
