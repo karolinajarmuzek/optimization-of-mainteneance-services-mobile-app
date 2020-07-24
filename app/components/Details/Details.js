@@ -1,6 +1,5 @@
 import React from "react";
 import { View } from "react-native";
-import { useSelector } from "react-redux";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 
 import { Map } from "../Map";
@@ -13,8 +12,6 @@ const TabDetails = () => <DetialsTab />;
 const TabDevice = () => <DeviceTab />;
 
 function Details() {
-  const task = useSelector((state) => state.tasks.task);
-
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: "details", title: "Failure details" },

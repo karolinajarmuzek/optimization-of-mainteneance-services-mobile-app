@@ -6,7 +6,6 @@ import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import { Container } from "../components/Container";
 import { ActualTasks } from "../components/ActualTasks";
 import { History } from "../components/History";
-import { Header } from "../components/Header";
 
 import { selectTask } from "../actions/tasks";
 const ActualTab = () => <ActualTasks />;

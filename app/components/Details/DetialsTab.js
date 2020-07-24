@@ -14,7 +14,7 @@ function DetailsTab() {
   const navigation = useNavigation();
 
   const elements = [
-    [task.reportResponse.location, "location-arrow"],
+    [task.reportResponse.address, "location-arrow"],
     [task.date + " " + task.time, "calendar"],
     [task.time + " min", "hourglass-1"],
     [
