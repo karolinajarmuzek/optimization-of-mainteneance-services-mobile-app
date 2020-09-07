@@ -13,7 +13,6 @@ import { Container } from "../Container";
 import { TimeLine } from "../TimeLine";
 import styles from "./styles";
 
-//import { data } from "../../data";
 import { ProfileIcon } from "../ProfileIcon";
 import { UIActivityIndicator } from "react-native-indicators";
 
@@ -79,7 +78,9 @@ function ActualTasks() {
             {!dataFetched ? (
               <UIActivityIndicator color='#023A5A' />
             ) : data.length == 0 && dataFetched ? (
-              <Text> No tasks available </Text>
+              <View style={styles.centerContent}>
+                <Text> No tasks available </Text>
+              </View>
             ) : (
               <TimeLine data={data} />
             )}

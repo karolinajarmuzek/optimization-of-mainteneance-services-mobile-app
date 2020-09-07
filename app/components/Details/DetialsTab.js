@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import styles from "./styles";
 
-import { URL_REPAIR } from "../../urls";
+import { URL_CLOSE_REPAIR } from "../../urls";
 
 function DetailsTab() {
   const task = useSelector((state) => state.tasks.task);
@@ -28,19 +28,16 @@ function DetailsTab() {
 
   const closeTask = () => {
     console.debug("Closing task process started");
-    fetch(URL_REPAIR + task.id, {
+    fetch(URL_CLOSE_REPAIR + task.id, {
       method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
-      body: JSON.stringify({
-        status: "FINISHED",
-      }),
     })
       .then((response) => {
-        if (response.status === 204) {
+        if (response.status == 200) {
           console.debug("Closing task process completed successfully");
           navigation.navigate("Home");
         } else {

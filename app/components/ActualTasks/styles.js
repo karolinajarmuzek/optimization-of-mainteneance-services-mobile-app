@@ -22,6 +22,9 @@ const styles = EStyleSheet.create({
     //alignItems: "center",
     justifyContent: "center",
   },
+  centerContent: {
+    alignItems: "center",
+  },
 });
 
 export default styles;

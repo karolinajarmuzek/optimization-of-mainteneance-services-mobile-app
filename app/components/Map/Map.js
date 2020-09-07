@@ -59,7 +59,6 @@ class Map extends Component {
   };
 
   render() {
-    console.log("Map ", this.props.task.reportResponse.longitude);
     return (
       <Container>
         <MaterialIcons

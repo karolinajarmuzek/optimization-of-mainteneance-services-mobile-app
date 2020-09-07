@@ -19,9 +19,8 @@ function History({}) {
   const token = useSelector((state) => state.user.token);
 
   var tempDate = new Date();
-  tempDate.setDate(tempDate.getDate() - 1);
   const [date, setDate] = useState(
-    String(tempDate.getDate()) +
+    String(("0" + tempDate.getDate()).slice(-2)) +
       "-" +
       String(("0" + (tempDate.getMonth() + 1)).slice(-2)) +
       "-" +
