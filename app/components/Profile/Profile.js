@@ -34,8 +34,8 @@ function Profile(props) {
       .then((response) => response.json())
       .then((json) => {
         console.debug("Data fetch completed successfully");
-        const pending = json.filter((obj) => obj.status === "PENDING").length; //ASSGINED
-        const closed = json.filter((obj) => obj.status === "CLOSED").length;
+        const pending = json.filter((obj) => obj.status !== "FINISHED").length; //ASSGINED
+        const closed = json.filter((obj) => obj.status === "FINISHED").length;
         setPendingRepair(pending);
         setClosedRepairs(closed);
       });
