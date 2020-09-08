@@ -67,6 +67,30 @@ const styles = EStyleSheet.create({
     fontSize: 20,
     color: "#fff",
   },
+  modal: {
+    backgroundColor: "#fff",
+    paddingVertical: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    color: "#023A5A",
+    fontSize: 18,
+  },
+  modalTitle: {
+    fontSize: 20,
+    color: "#B63181",
+    marginBottom: 15,
+  },
+  closeModal: {
+    fontSize: 16,
+    marginTop: 20,
+    color: "#B63181",
+  },
+  spareParts: {
+    fontSize: 18,
+    color: "#B63181",
+    paddingHorizontal: 20,
+    marginTop: 10,
+  },
 });
 
 export default styles;
