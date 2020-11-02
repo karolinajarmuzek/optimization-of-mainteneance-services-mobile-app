@@ -31,6 +31,7 @@ function ProfileIcon() {
         navigation.navigate("Profile", {
           firstName: json["firstName"],
           lastName: json["lastName"],
+          experience: json["experience"],
           localization: json["startLocalization"],
         });
       })

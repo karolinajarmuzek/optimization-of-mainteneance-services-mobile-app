@@ -38,6 +38,9 @@ function Profile(props) {
         const closed = json.filter((obj) => obj.status === "FINISHED").length;
         setPendingRepair(pending);
         setClosedRepairs(closed);
+      })
+      .catch((error) => {
+        console.debug("Error during fetching user data: " + error);
       });
   }
 
@@ -67,6 +70,9 @@ function Profile(props) {
           <Text style={styles.nameText}>
             {" "}
             {props.firstName} {props.lastName}
+          </Text>
+          <Text style={styles.experienceText}>
+            Experience level: {props.experience}
           </Text>
           <View style={styles.location}>
             <Entypo name='location-pin' size={25} color={"#fff"} />

@@ -7,20 +7,20 @@ const styles = EStyleSheet.create({
   container: {
     height: "100%",
     width: "100%",
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   logoutIcon: {
     position: "absolute",
     marginTop: 20,
     marginLeft: windowWidth - 30 - 15,
-    zIndex: 1
+    zIndex: 1,
   },
   personalDetials: {
     height: "60%",
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 50,
-    backgroundColor: "#023A5A"
+    backgroundColor: "#023A5A",
   },
   photo: {
     width: 240,
@@ -28,14 +28,14 @@ const styles = EStyleSheet.create({
     borderRadius: 120,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   fixDetails: {
     flexDirection: "row",
     height: "25%",
     width: "100%",
     alignContent: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   fixDetail: {
     backgroundColor: "#023A5A",
@@ -43,31 +43,36 @@ const styles = EStyleSheet.create({
     height: "100%",
     alignItems: "center",
     marginHorizontal: 2,
-    paddingTop: "5%"
+    paddingTop: "5%",
   },
   nameText: {
     color: "#fff",
     fontSize: 30,
-    marginTop: 10
+    marginTop: 10,
+  },
+  experienceText: {
+    color: "#fff",
+    fontSize: 20,
+    marginTop: 4,
   },
   location: {
     flexDirection: "row",
-    marginTop: 4
+    marginTop: 4,
   },
   locationText: {
     color: "#fff",
-    fontSize: 20
+    fontSize: 20,
   },
   fixesCount: {
     fontSize: 60,
     color: "#B63181",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   fixesText: {
     fontSize: 15,
     color: "#fff",
-    flexWrap: "wrap"
-  }
+    flexWrap: "wrap",
+  },
 });
 
 export default styles;
