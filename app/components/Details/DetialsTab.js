@@ -15,8 +15,8 @@ function DetailsTab() {
 
   const elements = [
     [task.reportResponse.address, "location-arrow"],
-    [task.date + " " + task.time, "calendar"],
-    [task.time + " min", "hourglass-1"],
+    [task.date + " " + task.startTime, "calendar"],
+    [calculateRepairTime(task.startTime, task.endTime) + " min", "hourglass-1"],
     [
       task.reportResponse.customerPayload.firstName +
         " " +
@@ -79,6 +79,17 @@ function DetailsTab() {
         ) : null}
       </View>
     </View>
+  );
+}
+
+function calculateRepairTime(startTime, endTime) {
+  let start = startTime.toString().split(":");
+  let end = endTime.toString().split(":");
+  return (
+    parseInt(end[0]) * 60 +
+    parseInt(end[1]) -
+    parseInt(start[0]) * 60 -
+    parseInt(start[1])
   );
 }
 
