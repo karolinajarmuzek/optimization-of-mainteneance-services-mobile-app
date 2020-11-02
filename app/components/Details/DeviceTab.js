@@ -38,7 +38,7 @@ function DeviceTab() {
               Object.entries(task.reportResponse.spareParts).map(
                 ([key, value]) => {
                   return (
-                    <Text>
+                    <Text key={key}>
                       {key}: {value}
                     </Text>
                   );

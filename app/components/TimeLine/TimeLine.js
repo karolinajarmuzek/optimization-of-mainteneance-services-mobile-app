@@ -18,7 +18,7 @@ function TimeLine({ data }) {
     let newData = [];
     data.forEach((element) => {
       var task = {};
-      task["time"] = element["time"];
+      task["time"] = element["startTime"];
       task["title"] = element["reportResponse"]["devicePayload"]["name"];
       task["description"] = element["reportResponse"]["description"];
       task["element"] = element;

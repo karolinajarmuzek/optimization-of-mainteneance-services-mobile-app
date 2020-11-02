@@ -53,7 +53,7 @@ function Login() {
         navigation.navigate("Home");
       })
       .catch((error) => {
-        console.debug("Error during authorization " + error);
+        console.debug("Error during authorization: " + error);
       });
   };
 

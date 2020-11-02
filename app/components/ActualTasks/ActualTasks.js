@@ -48,6 +48,9 @@ function ActualTasks() {
         setData(json);
         setDataFetched(true);
         setRefreshing(false);
+      })
+      .catch((error) => {
+        console.debug("Error during fetching actual repairs: " + error);
       });
   }
 

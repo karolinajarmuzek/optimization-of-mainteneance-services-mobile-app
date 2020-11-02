@@ -11,15 +11,19 @@ import { ProfileIcon } from "../ProfileIcon";
 const delta = 0.0015;
 
 class Map extends Component {
+  _isMounted = false;
+
   constructor() {
     super();
     this.state = {
       region: {},
       marker: {},
+      ready: false,
     };
   }
 
   componentDidMount() {
+    this._isMounted = true;
     this.setState({
       region: {
         latitude: parseFloat(this.props.task.reportResponse.latitude) - delta,
@@ -31,7 +35,12 @@ class Map extends Component {
         latitude: parseFloat(this.props.task.reportResponse.latitude),
         longitude: parseFloat(this.props.task.reportResponse.longitude),
       },
+      ready: true,
     });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   onRegionChange = (region) => {
@@ -69,26 +78,29 @@ class Map extends Component {
           onPress={this.fitAllMarkers}
         />
         <ProfileIcon />
-        <View style={styles.container}>
-          <MapView
-            ref={(ref) => {
-              this.map = ref;
-            }}
-            style={styles.map}
-            initialRegion={this.state.region}
-            onRegionChange={this.onRegionChange}
-          >
-            <Marker
-              coordinate={{
-                latitude: this.state.marker.latitude,
-                longitude: this.state.marker.longitude,
+
+        {this.state.ready ? (
+          <View style={styles.container}>
+            <MapView
+              ref={(ref) => {
+                this.map = ref;
               }}
-              title={this.state.marker.title}
-              description={this.state.marker.description}
-              pinColor='#B63181'
-            />
-          </MapView>
-        </View>
+              style={styles.map}
+              initialRegion={this.state.region}
+              onRegionChange={this.onRegionChange}
+            >
+              <Marker
+                coordinate={{
+                  latitude: this.state.marker.latitude,
+                  longitude: this.state.marker.longitude,
+                }}
+                title={this.state.marker.title}
+                description={this.state.marker.description}
+                pinColor='#B63181'
+              />
+            </MapView>
+          </View>
+        ) : null}
       </Container>
     );
   }
